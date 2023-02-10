@@ -5,6 +5,7 @@ Bot only has 4 permissions:
   * Send Messages
   * Send Messages in Threads
   * Read Message History
+
 with the permission code **274877975552**.
 
 To install required libraries, simply run:

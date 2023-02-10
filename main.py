@@ -25,6 +25,10 @@ class MyClient(discord.Client):
         print(f'Logged on as {self.user}!')
 
     async def on_message(self, message):
+        if message.content.startswith(''):
+            print(f'{message.created_at.astimezone(timezone("Asia/Istanbul")).strftime( "%Y-%m-%d %X")} | #{message.channel} | {message.author} => {message.content}')
+
+
         if message.author == client.user:
             return
 
@@ -60,8 +64,6 @@ class MyClient(discord.Client):
                                     f.write(f'{message.created_at.astimezone(timezone("Asia/Istanbul")).strftime( "%Y-%m-%d %X")} | #{message.channel} | {message.author} => {message.content}\n')
             print(f'\033[93m===== SCAN COMPLETED =====\033[0m')
         
-        if message.content.startswith(''):
-            print(f'{message.created_at.astimezone(timezone("Asia/Istanbul")).strftime( "%Y-%m-%d %X")} | #{message.channel} | {message.author} => {message.content}')
 
 intents = discord.Intents.default()
 intents.message_content = True

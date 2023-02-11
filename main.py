@@ -6,8 +6,6 @@ import time
 import os
 import sys
 
-
-
 def progressbar(it, prefix="", size=60, out=sys.stdout):
     count = len(it)
     def show(j):
@@ -27,7 +25,6 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         if message.content.startswith(''):
             print(f'{message.created_at.astimezone(timezone("Asia/Istanbul")).strftime( "%Y-%m-%d %X")} | #{message.channel} | {message.author} => {message.content}')
-
 
         if message.author == client.user:
             return

@@ -30,7 +30,7 @@ class MyClient(discord.Client):
             return
 
         if message.content.startswith('/startscanner'):
-            if message.author.id == 448224340530561043 or message.author.id == 637386194283659314 or message.author.id == 839183314833244210 or message.author.id == 257935638018523136:
+            if message.author.id == DISCORD_USER_ID_GOES_HERE
                 text_channel_list = []
                 
                 # Getting user messages and creating folder with current time

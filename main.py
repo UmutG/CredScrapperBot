@@ -6,17 +6,6 @@ import time
 import os
 import sys
 
-def progressbar(it, prefix="", size=60, out=sys.stdout):
-    count = len(it)
-    def show(j):
-        x = int(size*j/count)
-        print("{}[{}{}] {}/{}".format(prefix, u"█"*x, "."*(size-x), j, count), 
-                end='\r', file=out, flush=True)
-    show(0)
-    for i, item in enumerate(it):
-        yield item
-        show(i+1)
-    print("\n", flush=True, file=out)
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -30,13 +19,14 @@ class MyClient(discord.Client):
             return
 
         if message.content.startswith('/startscanner'):
-            if message.author.id == DISCORD_USER_ID_GOES_HERE
+            if message.author.id == "DISCORD_USER_ID_GOES_HERE":
                 text_channel_list = []
                 
                 # Getting user messages and creating folder with current time
                 try:
                     print(message.author);currentDateAndTime = datetime.now().strftime("%Y_%m_%d-%H_%M" )
                     os.system(f"mkdir -p logs/{currentDateAndTime}");print(f'\033[93mlogs/{currentDateAndTime} has been created.\033[0m')
+                
                 except Exception as e:
                     print("Error:", e)
 
@@ -60,13 +50,31 @@ class MyClient(discord.Client):
                                     # Getting user messages with time zone
                                     f.write(f'{message.created_at.astimezone(timezone("Asia/Istanbul")).strftime( "%Y-%m-%d %X")} | #{message.channel} | {message.author} => {message.content}\n')
             print(f'\033[93m===== SCAN COMPLETED =====\033[0m')
-        
 
-intents = discord.Intents.default()
-intents.message_content = True
+ 
+def progressbar(it, prefix="", size=60, out=sys.stdout):
+    count = len(it)
+    def show(j):
+        x = int(size*j/count)
+        print("{}[{}{}] {}/{}".format(prefix, u"█"*x, "."*(size-x), j, count), 
+                end='\r', file=out, flush=True)
+    show(0)
+    for i, item in enumerate(it):
+        yield item
+        show(i+1)
+    print("\n", flush=True, file=out)
 
-with open('.env', 'r') as f:
-    bot_token = f.read()
 
-client = MyClient(intents=intents)
-client.run(bot_token)
+def main():
+    intents = discord.Intents.default()
+    intents.message_content = True
+
+    with open('.env', 'r') as f:
+        bot_token = f.read()
+
+    client = MyClient(intents=intents)
+    client.run(bot_token)
+
+
+if __name__ == '__main__':
+    main()

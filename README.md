@@ -1,5 +1,5 @@
 # CredScrapperBot
-Discord bot for scrapping sensitive data for educational purposes
+Discord bot scrapping sensitive data for educational purposes
 
 Bot only has 4 permissions:
   * Read Messages/View Channels

@@ -18,14 +18,14 @@ class MyClient(discord.Client):
         if message.author == client.user:
             return
 
-        if message.content.startswith('/startscanner'):
+        if message.content == "/startscanner":
             if message.author.id == "DISCORD_USER_ID_GOES_HERE":
                 text_channel_list = []
                 
                 # Getting user messages and creating folder with current time
                 try:
                     print(message.author);currentDateAndTime = datetime.now().strftime("%Y_%m_%d-%H_%M" )
-                    os.system(f"mkdir -p logs/{currentDateAndTime}");print(f'\033[93mlogs/{currentDateAndTime} has been created.\033[0m')
+                    os.makedirs(f"logs/{currentDateAndTime}");print(f'\033[93mlogs/{currentDateAndTime} has been created.\033[0m')
                 
                 except Exception as e:
                     print("Error:", e)
